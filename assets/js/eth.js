@@ -20,11 +20,18 @@ function requests() {
   balanceRequest.send();
   balanceRequest.onload = function() {
     if (balanceRequest.status >= 200 && balanceRequest.status < 400) {
-      var balance = JSON.parse(balanceRequest.responseText);
+      var input = JSON.parse(balanceRequest.responseText);
+      var balance = input.data;
       console.log(balance);
+      updateBalance(balance); //THIS IS THE TYPE OF FUNCTION WE WILL CALL TO UPDATE EACH AND EVERY ONE
     }
     else {
       console.log("We connected to the server, but it returned an error.");
     }
   }
+}
+
+function updateBalance(balance) {
+  console.log("updateBalance = " + balance);
+  document.getElementById("Balance").innerHTML = balance;
 }
