@@ -6,12 +6,9 @@
   <script src="assets/js/eth.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="assets/js/bootstrap-select.js"></script>
-  <script src="assets/js/btnText.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/bootstrap-select.css">
   <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
@@ -28,10 +25,15 @@
       <br />
       <br />
     <div class="row">
-            My ETHEREUM balance:&nbsp;<span id="Balance"><p>Explanation of the work and payout.
-            </p></span>
-
-            Earning Projections:
+            My ETHEREUM earned:
+      </div>
+      <br />
+      <div class="row">
+        <span id="Balance"></span>
+      </div>
+      <br />
+      <div class="row">
+        Earning Projections:
       </div>
       <br />
       <div class="row">
@@ -48,13 +50,13 @@
         <br />
         <div class="row">
               <div class="col-sm-4">
-                VALUE Day
+                <span id="Day"></span>
               </div>
               <div class="col-sm-4">
-                VALUE Week
+                <span id="Week"></span>
               </div>
               <div class="col-sm-4">
-                VALUE Month
+                <span id="Month"></span>
               </div>
           </div>
           <br />
@@ -66,7 +68,7 @@
           <br />
           <div class="row">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4"><button type="button" onclick="update()" class="btn btn-danger">Get Stats!</button></div>
+            <div class="col-sm-4"><button onclick="requests()" type="button" class="btn btn-danger">Get Stats!</button></div>
           </div>
     </div>
 </div>
