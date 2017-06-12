@@ -1,12 +1,10 @@
 var ethAddress = "0x507f3b2028ec5d7039526915efd2fa75c6567731";
-var globalHashrate = "";
 var balanceURL = "https://api.nanopool.org/v1/eth/balance/" + ethAddress;
 var projectionsURL = "https://api.nanopool.org/v1/eth/approximated_earnings/";
 var exchange = "https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=BTC";
 
 function requests() {
   var balanceRequest = new XMLHttpRequest();
-  var hashrateRequest = new XMLHttpRequest();
   var projectionsRequest = new XMLHttpRequest();
   var xcRequest = new XMLHttpRequest();
   //var USDRequest = new XMLHttpRequest();
@@ -26,7 +24,7 @@ function requests() {
       console.log("We connected to the server, but it returned an error.");
     }
   }
-  hashrateRequest.open('GET', hashrateURL);
+  /*hashrateRequest.open('GET', hashrateURL);
   hashrateRequest.send();
   hashrateRequest.onload = function() {
     if (hashrateRequest.status >= 200 && hashrateRequest.status < 400) {
@@ -39,7 +37,7 @@ function requests() {
     else {
       console.log("We connected to the server, but it returned an error.");
     }
-  }
+  }*/
   xcRequest.open('GET', exchange);
   xcRequest.send();
   xcRequest.onload = function() {
@@ -54,6 +52,9 @@ function requests() {
       console.log("We connected to the server, but it returned an error.");
     }
   }
+  getHashrate(hashrateURL);
+
+  //getProjections(hashrate);
 
 
 
@@ -79,6 +80,46 @@ function requests() {
   //}
 }
 
+function getHashrate(URL) {
+  var hashrateRequest = new XMLHttpRequest();
+  hashrateRequest.open('GET', URL);
+  hashrateRequest.send();
+  hashrateRequest.onload = function() {
+    if (hashrateRequest.status >= 200 && hashrateRequest.status < 400) {
+      var input = JSON.parse(hashrateRequest.responseText);
+      var hashrate = input.data.h24;
+      getProjections(hashrate);
+    }
+    else {
+      console.log("We connected to the server, but it returned an error.");
+    }
+  }
+}
+
+function getProjections (hashrate) {
+  console.log(hashrate);
+  hashrate = JSON.stringify(hashrate);
+  console.log(hashrate);
+  projectionsURL = projectionsURL.concat(hashrate);
+  console.log(projectionsURL);
+  var projectionsRequest = new XMLHttpRequest();
+  projectionsRequest.open('GET', projectionsURL);
+  projectionsRequest.send();
+  projectionsRequest.onload = function() {
+    if (projectionsRequest.status >= 200 && projectionsRequest.status < 400) {
+      var input = JSON.parse(projectionsRequest.responseText);
+      console.log(input);
+      var day = input.data.day.dollars;
+      var week = input.data.week.dollars;
+      var month = input.data.month.dollars;
+      updateProjections(day, week, month);
+    }
+    else {
+      console.log("We connected to the server, but it returned an error.");
+    }
+  }
+}
+
 function updateBalance(balance) {
   document.getElementById("Balance").innerHTML = balance;
 }
@@ -86,9 +127,9 @@ function updateHashrate(hashrate) {
   globalHashrate = JSON.stringify(hashrate);
 }
 function updateProjections(day, week, month) {
-  document.getElementById("Day").innerHTML = this.day;
-  document.getElementById("Week").innerHTML = this.week;
-  document.getElementById("Month").innerHTML = this.month;
+  document.getElementById("Day").innerHTML = day;
+  document.getElementById("Week").innerHTML = week;
+  document.getElementById("Month").innerHTML = month;
 }
 function updateXC(USD, BTC) {
   document.getElementById("BTC").innerHTML=BTC;
