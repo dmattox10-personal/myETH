@@ -1,7 +1,8 @@
 var ethAddress = "0x507f3b2028ec5d7039526915efd2fa75c6567731";
 var balanceURL = "https://api.nanopool.org/v1/eth/balance/" + ethAddress;
 var projectionsURL = "https://api.nanopool.org/v1/eth/approximated_earnings/";
-var exchange = "https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=BTC";
+var exchangeURL = "https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=BTC";
+var walletURL = "https://api.etherscan.io/api?module=account&action=balance&address=" + ethAddress + "&tag=latest&apikey=PGNUMCQNNJ88US2ITXIHV3NZ38F7TJR5PV"
 
 function requests() {
   var balanceRequest = new XMLHttpRequest();
@@ -23,7 +24,7 @@ function requests() {
       console.log("We connected to the server, but it returned an error.");
     }
   }
-  xcRequest.open('GET', exchange);
+  xcRequest.open('GET', exchangeURL);
   xcRequest.send();
   xcRequest.onload = function() {
     if (xcRequest.status >= 200 && xcRequest.status < 400) {
@@ -38,7 +39,6 @@ function requests() {
   }
   getHashrate(hashrateURL);
 }
-
 function getHashrate(URL) {
   var hashrateRequest = new XMLHttpRequest();
   hashrateRequest.open('GET', URL);
@@ -54,7 +54,6 @@ function getHashrate(URL) {
     }
   }
 }
-
 function getProjections (hashrate) {
   hashrate = JSON.stringify(hashrate);
   projectionsURL = projectionsURL.concat(hashrate);
@@ -74,7 +73,21 @@ function getProjections (hashrate) {
     }
   }
 }
-
+function getWallet() {
+  var walletRequest = new XMLHttpRequest();
+  walletRequest.open('GET', walletURL);
+  walletRequest.send();
+  walletRequest.onload = function() {
+    if (walletRequest.status >= 200 && walletRequest.status < 400) {
+      var input = JSON.parse(walletRequest.responseText);
+      var walletContents = input.result;
+      updateWallet(walletContents);
+    }
+    else {
+      console.log("We connected to the server, but it returned an error.");
+    }
+  }
+}
 function updateBalance(balance) {
   document.getElementById("Balance").innerHTML = balance;
 }
@@ -85,8 +98,13 @@ function updateProjections(day, week, month) {
   document.getElementById("Day").innerHTML = "$" + day.toFixed(2);
   document.getElementById("Week").innerHTML = "$" + week.toFixed(2);
   document.getElementById("Month").innerHTML = "$" + month.toFixed(2);
+  getWallet();
 }
 function updateXC(USD, BTC) {
   document.getElementById("BTC").innerHTML=BTC;
   document.getElementById("USD").innerHTML=USD;
+}
+function updateWallet(value) {
+  document.getElementById("Wallet").innerHTML=value;
+
 }
