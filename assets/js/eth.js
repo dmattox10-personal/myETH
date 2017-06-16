@@ -1,25 +1,30 @@
 function requests(choice) {
   var ethAddress = "";
+  var walAddress = "";
   switch(choice) {
-    case 0:
-    ethAddress = "0x507f3b2028ec5d7039526915efd2fa75c6567731"; //Using my address for all three, until the Rig goes live
-    break;
-    case 1:
+    case 0: //MY WALLET, MY RIGS
     ethAddress = "0x507f3b2028ec5d7039526915efd2fa75c6567731";
-    //ethAddress = "0x3677666BA14809229e28baC92bFBB78cf6d447bf";
+    walAddress = "0x507f3b2028ec5d7039526915efd2fa75c6567731";
     break;
-    case 2:
-    ethAddress = "0x507f3b2028ec5d7039526915efd2fa75c6567731";
-    //ethAddress = "0xB70D62c3034b404c3e22B59233952578a8F34006";
+    case 1: //David's Wallet, JOINT RIG
+    //ethAddress = "0x507f3b2028ec5d7039526915efd2fa75c6567731";
+    ethAddress = "0x3677666BA14809229e28baC92bFBB78cf6d447bf";
+    walAddress = "0xB70D62c3034b404c3e22B59233952578a8F34006";
+    break;
+    case 1: //JOINT WALLET, JOINT RIG
+    ethAddress = "0xB70D62c3034b404c3e22B59233952578a8F34006";
+    walAddress = "0xB70D62c3034b404c3e22B59233952578a8F34006"; //Joint address
     break;
   }
   var balanceURL = "https://api.nanopool.org/v1/eth/balance/" + ethAddress;
-  var walletURL = "https://api.etherscan.io/api?module=account&action=balance&address=" + ethAddress + "&tag=latest&apikey=PGNUMCQNNJ88US2ITXIHV3NZ38F7TJR5PV"
+  var walletURL = "https://api.etherscan.io/api?module=account&action=balance&address=" + walAddress + "&tag=latest&apikey=PGNUMCQNNJ88US2ITXIHV3NZ38F7TJR5PV"
   var hashrateURL = "https://api.nanopool.org/v1/eth/avghashrate/" + ethAddress;
   var exchangeURL = "https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=BTC";
 
   getBalance(balanceURL);
+  console.log(ethAddress);
   getWallet(walletURL);
+  console.log(walAddress);
   getHashrate(hashrateURL);
   getExchange(exchangeURL);
 }
