@@ -5,6 +5,7 @@
   <link href="https://fonts.googleapis.com/css?family=Exo+2|Open+Sans|Timmana|Play|Orbitron|Permanent+Marker" rel="stylesheet">
 
   <script src="assets/js/eth.js"></script>
+  <script src="assets/js/jscolor.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
@@ -15,8 +16,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 </head>
 <body>
-  <div class="container-fluid">
-    <div class="flex-rectangle">
+  <div class="container-fluid font-tim strokeme">
+    <div class="flex-rectangle" id="FG">
       <div class="row">
         <div class="text-center">
             <div class="col-md-6 center-block SvgImage"><img class="SvgImage" src="assets/img/eth.svg" alt="Ethereum Logo"></div>
@@ -76,12 +77,37 @@
           <br />
           <div class="row">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4"><button onclick="requests()" type="button" class="btn btn-danger">Get Stats!</button></div>
+            <div class="col-sm-4"><button onclick="requests(0x507f3b2028ec5d7039526915efd2fa75c6567731)" type="button" class="btn btn-danger">Get Stats For Dan!</button></div>
           </div>
           <div class="row">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4"><button onclick="window.location='settings.html'" class="btn btn-danger">Settings</button></div>
+            <div class="col-sm-4"><button onclick="requests(0x3677666BA14809229e28baC92bFBB78cf6d447bf)" type="button" class="btn btn-danger">Get Stats For David!</button></div>
           </div>
+          <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"><button onclick="requests(0xB70D62c3034b404c3e22B59233952578a8F34006)" type="button" class="btn btn-danger">Get Stats For Joint Account!</button></div>
+          </div>
+          <br />
+          <div class="row">
+            Choose Background Color:&nbsp;<input class="jscolor" onchange="updateBG(this.jscolor)" value="424242">
+            <script>
+            function updateBG(jscolor) {
+              // 'jscolor' instance can be used as a string
+              document.body.style.backgroundColor = '#' + jscolor
+            }
+            </script>
+          </div>
+          <br />
+          <div class="row">
+            Choose Foreground Color:&nbsp;<input class="jscolor" onchange="updateFG(this.jscolor)"value="F44336">
+            <script>
+            function updateFG(jscolor) {
+                // 'jscolor' instance can be used as a string
+                document.getElementById('FG').style.backgroundColor = '#' + jscolor
+            }
+            </script>
+          </div>
+          <br />
     </div>
 </div>
 </body>

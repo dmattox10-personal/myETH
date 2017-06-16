@@ -11,34 +11,45 @@ h1 {
   color: black;
 }
 
+.strokeme
+{
+    color: white;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+
+}
+
 .font-exo {
   font-family: 'Exo 2', sans-serif;
-  color: black;
+  color: white;
 }
 
 .font-sans {
   font-family: 'Open Sans', sans-serif;
-  color: black;
+  color: white;
 }
 
 .font-tim {
   font-family: 'Timmana', sans-serif;
-  color: black;
+  color: white;
 }
 
 .font-play {
    font-family: 'Play', sans-serif;
-   color: black;
+   color: white;
  }
 
 .font-orb {
   font-family: 'Orbitron', sans-serif;
-  color: black;
+  color: white;
 }
 
 .font-perm {
   font-family: 'Permanent Marker', sans-serif;
-  color: black;
+  color: white;
   font-size: 24px;
 }
 

@@ -1,10 +1,11 @@
-var ethAddress = "0x507f3b2028ec5d7039526915efd2fa75c6567731";
+var ethAddress = "";
 var balanceURL = "https://api.nanopool.org/v1/eth/balance/" + ethAddress;
 var projectionsURL = "https://api.nanopool.org/v1/eth/approximated_earnings/";
 var exchangeURL = "https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=BTC";
 var walletURL = "https://api.etherscan.io/api?module=account&action=balance&address=" + ethAddress + "&tag=latest&apikey=PGNUMCQNNJ88US2ITXIHV3NZ38F7TJR5PV"
 
-function requests() {
+function requests(ethAddressIn) {
+  ethAddress = ethAddressIn;
   var balanceRequest = new XMLHttpRequest();
   var projectionsRequest = new XMLHttpRequest();
   var xcRequest = new XMLHttpRequest();
