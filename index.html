@@ -26,7 +26,7 @@
       <br />
       <br />
     <div class="row">
-            My ETHEREUM earned by mining on nanopool:
+            ETH tied up mining on nanopool:
       </div>
       <br />
       <div class="row">
@@ -34,7 +34,7 @@
       </div>
         <br />
       <div class="row">
-        My Ethereum wallet balance:
+        My ETH wallet balance:
       </div>
       <br />
       <div class="row">
@@ -70,22 +70,30 @@
           </div>
           <br />
           <div class="row">
-            <div class="col-sm-4">1.0 Ethereum is equal to:</div>
+            <div class="col-sm-4">1.0 ETH is equal to:</div>
             <div class="col-sm-4"><span id="BTC"></span>&nbsp;BTC</div>
             <div class="col-sm-4"><span id="USD"></span>&nbsp;USD</div>
           </div>
           <br />
           <div class="row">
-            <div class="col-sm-4"></div>
-            <div class="col-sm-4"><button onclick="requests(0)" type="button" class="btn btn-danger">Get Stats For Dan!</button></div>
+            <div class="col-sm-4"> My Wallet is worth:</div>
+            <div class="col-sm-4"><span id="myBTC"></span>&nbsp;BTC</div>
+            <div class="col-sm-4"><span id="myUSD"></span>&nbsp;USD</div>
           </div>
+          <br />
           <div class="row">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4"><button onclick="requests(1)" type="button" class="btn btn-danger">Get Stats For David!</button></div>
+            <div class="col-sm-4"><label>Enter wallet address:</label></div>
           </div>
+          <br />
           <div class="row">
             <div class="col-sm-4"></div>
-            <div class="col-sm-4"><button onclick="requests(2)" type="button" class="btn btn-danger">Get Stats For Joint Account!</button></div>
+            <div class="col-sm-4"><input type="text" id="address" /></div>
+          </div>
+          <br />
+          <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4"><button onclick="requests()" type="button" class="btn">Get Stats!</button></div>
           </div>
           <br />
           <div class="row">
