@@ -4,6 +4,7 @@
 function requests() {
   getAddress();
   var ethAddress = "";
+  var input = "";
   var balanceURL = "https://api.nanopool.org/v1/eth/balance/";
   balanceURL = balanceURL.concat(getAddress());
   var walletURL = "https://api.etherscan.io/api?module=account&action=balance&address=";
@@ -11,34 +12,60 @@ function requests() {
   var hashrateURL = "https://api.nanopool.org/v1/eth/avghashrate/";
   hashrateURL = hashrateURL.concat(getAddress());
   var exchangeURL = "https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=BTC";
-  getBalance(balanceURL);
-  getWallet(walletURL);
-  getHashrate(hashrateURL);
-  getExchangeUSD(exchangeURL);
-  getExchangeBTC(exchangeURL);
-  getMyVal(walletURL, exchangeURL);
+  var balance = getBalance(balanceURL);
+  console.log(getBalance(balanceURL) + " runs ???");
+  //var wallet =
+  //var day =
+  //var week =
+  //var month =
+  //var ethBTC =
+  //var ethUSD =
+  //var walBTC =
+  //var walUSD =
+
+
+
+
+
+  //updatePageValues(balance, wallet, day, week, month, ethBTC, ethUSD, walBTC, walUSD);
+  //getBalance(balanceURL);
+  //getWallet(walletURL);
+  //getHashrate(hashrateURL);
+  //getExchangeUSD(exchangeURL);
+  //getExchangeBTC(exchangeURL);
+  //getMyVal(walletURL, exchangeURL);
 }
 function getAddress(){
   var address = document.getElementById("address");
   ethAddress = address.value;
   return ethAddress;
   }
-function getBalance(balanceURL) {
-  var balanceRequest = new XMLHttpRequest();
-  balanceRequest.open('GET', balanceURL);
-  balanceRequest.send();
-  balanceRequest.onload = function() {
-    if (balanceRequest.status >= 200 && balanceRequest.status < 400) {
-      var input = JSON.parse(balanceRequest.responseText);
-      var balance = input.data;
-      updateBalance(balance);
-      return balance;
+
+function getBalance(URL) {
+  var valueRequest = new XMLHttpRequest();
+  valueRequest.open('GET', URL);
+  valueRequest.send();
+  valueRequest.onload = function() {
+  input = JSON.parse(valueRequest.responseText);
+  input = input.data;
+  console.log(input + " runs first");
+  return input;
     }
-    else {
-      console.log("We connected to the server, but it returned an error.");
-    }
+
   }
-}
+function getValue(URL, STEP) {
+  var valueRequest = new XMLHttpRequest();
+  valueRequest.open('GET', URL);
+  valueRequest.send();
+  vaueRequest.onload = function() {
+  input = JSON.parse(valueRequest.responseText);
+  input = input.data;
+  console.log(input);
+  return input;
+    }
+
+  }
+
 function getMyVal(walletURL, exchangeURL) {
   var wal = getWallet(walletURL);
   var dollars = getExchangeUSD(exchangeURL);
