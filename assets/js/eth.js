@@ -2,7 +2,7 @@
 //TODO write function returning the value of the ether wallet, eg. wallet * BTC, wallet * USD
 
 function requests() {
-  getAddress();
+  //getAddress();
   var ethAddress = "";
   var input = "";
   var balanceURL = "https://api.nanopool.org/v1/eth/balance/";
@@ -12,8 +12,8 @@ function requests() {
   var hashrateURL = "https://api.nanopool.org/v1/eth/avghashrate/";
   hashrateURL = hashrateURL.concat(getAddress());
   var exchangeURL = "https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=BTC";
-  var balance = getBalance(balanceURL);
-  console.log(getBalance(balanceURL) + " runs ???");
+  //var balance = getBalance(balanceURL);
+  //console.log(getBalance(balanceURL) + " runs ???");
   //var wallet =
   //var day =
   //var week =
@@ -28,8 +28,8 @@ function requests() {
 
 
   //updatePageValues(balance, wallet, day, week, month, ethBTC, ethUSD, walBTC, walUSD);
-  //getBalance(balanceURL);
-  //getWallet(walletURL);
+  getBalance(balanceURL);
+  getWallet(walletURL);
   //getHashrate(hashrateURL);
   //getExchangeUSD(exchangeURL);
   //getExchangeBTC(exchangeURL);
@@ -49,6 +49,7 @@ function getBalance(URL) {
   input = JSON.parse(valueRequest.responseText);
   input = input.data;
   console.log(input + " runs first");
+  updateBalance(input);
   return input;
     }
 
@@ -60,7 +61,7 @@ function getValue(URL, STEP) {
   vaueRequest.onload = function() {
   input = JSON.parse(valueRequest.responseText);
   input = input.data;
-  console.log(input);
+  console.log(input); //THIS IS WHERE I TESTED
   return input;
     }
 
