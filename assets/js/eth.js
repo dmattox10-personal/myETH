@@ -17,7 +17,7 @@ function requests(choice) {
     break;
   }
   var balanceURL = "https://api.nanopool.org/v1/eth/balance/" + ethAddress;
-  var walletURL = "https://api.etherscan.io/api?module=account&action=balance&address=" + walAddress + "&tag=latest&apikey=PGNUMCQNNJ88US2ITXIHV3NZ38F7TJR5PV"
+  var walletURL = "https://api.etherscan.io/api?module=account&action=balance&address=" + walAddress + "&tag=latest&apikey=PGNUMCQNNJ88US2ITXIHV3NZ38F7TJR5PV";
   var hashrateURL = "https://api.nanopool.org/v1/eth/avghashrate/" + ethAddress;
   var exchangeURL = "https://api.coinmarketcap.com/v1/ticker/ethereum/?convert=BTC";
 
@@ -55,6 +55,7 @@ function getWallet(walletURL) { //Still following the daisy chain of functions
     if (walletRequest.status >= 200 && walletRequest.status < 400) {
       var input = JSON.parse(walletRequest.responseText);
       var walletContents = input.result;
+      walletContents = walletContents / Math.pow(10,18);
       updateWallet(walletContents); // You;ll never stop me!
     }
     else {
