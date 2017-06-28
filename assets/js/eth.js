@@ -49,6 +49,7 @@ function getWallet(walletURL) {
     if (walletRequest.status >= 200 && walletRequest.status < 400) {
       var input = JSON.parse(walletRequest.responseText);
       var walletContents = input.result;
+      walletContents = walletContents / Math.pow(10,18);
       updateWallet(walletContents); // You;ll never stop me!
     }
     else {
