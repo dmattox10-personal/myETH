@@ -24,6 +24,11 @@ function getAddress(){
   return ethAddress;
   }
 function getBalance(balanceURL) {
+
+}
+
+  /*
+function getBalance(balanceURL) {
   var balanceRequest = new XMLHttpRequest();
   balanceRequest.open('GET', balanceURL);
   balanceRequest.send();
@@ -38,6 +43,7 @@ function getBalance(balanceURL) {
     }
   }
 }
+*/
 function updateBalance(balance) {
   document.getElementById("Balance").innerHTML = balance;
 }
@@ -49,7 +55,7 @@ function getWallet(walletURL) {
     if (walletRequest.status >= 200 && walletRequest.status < 400) {
       var input = JSON.parse(walletRequest.responseText);
       var walletContents = input.result;
-      walletContents = walletContents / Math.pow(10,18);
+      walletContents = (walletContents / Math.pow(10,18));
       updateWallet(walletContents);
     }
     else {
