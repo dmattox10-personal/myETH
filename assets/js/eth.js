@@ -50,7 +50,7 @@ function getWallet(walletURL) {
       var input = JSON.parse(walletRequest.responseText);
       var walletContents = input.result;
       walletContents = walletContents / Math.pow(10,18);
-      updateWallet(walletContents); // You;ll never stop me!
+      updateWallet(walletContents);
     }
     else {
       console.log("We connected to the server, but it returned an error.");
